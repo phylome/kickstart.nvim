@@ -2,4 +2,17 @@
 --  I promise not to create any merge conflicts in this directory :)
 --
 -- See the kickstart.nvim README for more information
-return {}
+return {
+  {
+    'olimorris/onedarkpro.nvim',
+    priority = 1000,
+    init = function()
+      require('onedarkpro').setup {
+        options = {
+          transparency = true,
+        },
+      }
+      vim.cmd.colorscheme 'onedark'
+    end,
+  },
+}
