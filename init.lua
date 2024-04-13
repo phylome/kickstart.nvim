@@ -194,21 +194,7 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('n', '<C-right>', '<C-w><C->>', { desc = 'Increase window size horizontally' })
 vim.keymap.set('n', '<C-left>', '<C-w><C-<>', { desc = 'Decrease window size horizontally' })
 
-local enable_transparency = false
-vim.keymap.set('n', '<leader>ub', function()
-  if enable_transparency == true then
-    enable_transparency = false
-  else
-    enable_transparency = true
-  end
-  local odp = require 'onedarkpro'
-  odp.setup {
-    options = {
-      transparency = enable_transparency,
-    },
-  }
-  vim.cmd.colorscheme 'onedark'
-end, { desc = 'Toggle transparency' })
+require 'custom.keymap'
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -833,6 +819,15 @@ require('lazy').setup({
         additional_vim_regex_highlighting = { 'ruby' },
       },
       indent = { enable = true, disable = { 'ruby' } },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = 'gnn',
+          node_incremental = 'grn',
+          scope_incremental = 'grc',
+          node_decremental = 'grm',
+        },
+      },
     },
     config = function(_, opts)
       -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
@@ -858,9 +853,9 @@ require('lazy').setup({
   --  Here are some example plugins that I've included in the Kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
-  -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
-  -- require 'kickstart.plugins.lint',
+  require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.indent_line',
+  require 'kickstart.plugins.lint',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
@@ -890,5 +885,6 @@ require('lazy').setup({
   },
 })
 
+require('ibl').setup { indent = { char = '┊' } }
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
