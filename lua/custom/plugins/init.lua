@@ -73,4 +73,53 @@ return {
       require('leap').create_default_mappings()
     end,
   },
+
+  {
+    'startup-nvim/startup.nvim',
+    requires = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
+
+    config = function()
+      local logo = {
+        '       ~                =              ',
+        '       ooo ~             oo ~          ',
+        '   ~ =oo+o=+~           =oooo          ',
+        ' ~~+o+ooo====           =ooooo= ~      ',
+        '~==.=oo+o====o=         ~oooo+o+=      ',
+        '~+.+.==o+=+===o+~       +oo++o+++      ',
+        '~=..==.=o===+===+=      ~++++++++~     ',
+        '~.+....==+=++====o=~    ~++++++++~     ',
+        '~..++....~+=+======     ~o+++++++~     ',
+        '~.....++.~+ +==.+===+~  ~++++~+~+~     ',
+        '~.~......~  ~.===.==+=  ~~++~+~+~~     ',
+        '~........~   ~ =.==++=++~~~~~~~~~~     ',
+        '~.....=..~      ==++==+++~~~~~~~~~     ',
+        '~....... ~      ~+=+++++~++~~~~~~~     ',
+        '~.. .....~         ++++++~+~~~~~~~     ',
+        '~........~          +=.++~+~+~~~.      ',
+        ' ~~ . . .~          ~==+++~+~+~ ~      ',
+        '  ~~~ .. ~            .++~+~~ ~        ',
+        '     ~~  ~            ~ =~+ ~          ',
+        '      ~~~~              ~ ~            ',
+      }
+
+      local settings = {
+        -- every line should be same width without escaped \
+        header = {
+          type = 'text',
+          align = 'center',
+          fold_section = false,
+          title = 'Header',
+          margin = 50,
+          content = logo,
+          highlight = 'Statement',
+          default_color = '',
+          oldfiles_amount = 0,
+        },
+        parts = {
+          'header',
+        },
+      }
+      require('startup').setup(settings)
+    end,
+  },
 }
