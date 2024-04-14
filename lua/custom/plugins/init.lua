@@ -2,6 +2,15 @@
 --  I promise not to create any merge conflicts in this directory :)
 --
 -- See the kickstart.nvim README for more information
+--
+-- NOTE: My wishlist for plugins
+-- - SessionManager
+-- - Markdown Preview
+-- - Fugitive
+-- - Oil (instead of Neotree?)
+-- - ZenMode
+--
+--
 return {
   {
     'olimorris/onedarkpro.nvim',
@@ -109,10 +118,10 @@ return {
           align = 'center',
           fold_section = false,
           title = 'Header',
-          margin = 50,
+          margin = 5,
           content = logo,
           highlight = 'Statement',
-          default_color = '',
+          default_color = '0x00FF00',
           oldfiles_amount = 0,
         },
         parts = {
