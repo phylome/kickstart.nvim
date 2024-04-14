@@ -366,6 +366,8 @@ require('lazy').setup({
         },
       }
 
+      vim.cmd 'hi TelescopeBorder guifg=#21252b'
+
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
