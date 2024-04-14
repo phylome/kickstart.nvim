@@ -4,11 +4,8 @@
 -- See the kickstart.nvim README for more information
 --
 -- NOTE: My wishlist for plugins
--- - SessionManager
 -- - Markdown Preview
--- - Fugitive
 -- - Oil (instead of Neotree?)
--- - ZenMode
 --
 --
 return {
@@ -43,39 +40,6 @@ return {
     cmd = 'ZenMode',
   },
 
-  -- session-manager [session]
-  -- https://github.com/Shatur/neovim-session-manager
-  {
-    'Shatur/neovim-session-manager',
-    event = 'User BaseDefered',
-    cmd = 'SessionManager',
-    opts = function()
-      local config = require 'session_manager.config'
-      return {
-        autoload_mode = config.AutoloadMode.Disabled,
-        autosave_last_session = false,
-        autosave_only_in_session = false,
-      }
-    end,
-    config = function(_, opts)
-      local session_manager = require 'session_manager'
-      session_manager.setup(opts)
-
-      -- Auto save session
-      -- BUG: This feature will auto-close anything nofile before saving.
-      --      This include neotree, aerial, mergetool, among others.
-      --      Consider commenting the next block if this is important for you.
-      --
-      --      This won't be necessary once neovim fixes:
-      --      https://github.com/neovim/neovim/issues/12242
-      -- vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
-      --   callback = function ()
-      --     session_manager.save_current_session()
-      --   end
-      -- })
-    end,
-  },
-
   {
     'ggandor/leap.nvim',
     init = function()
@@ -84,51 +48,30 @@ return {
   },
 
   {
-    'startup-nvim/startup.nvim',
-    requires = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
-
-    config = function()
-      local logo = {
-        '       ~                =              ',
-        '       ooo ~             oo ~          ',
-        '   ~ =oo+o=+~           =oooo          ',
-        ' ~~+o+ooo====           =ooooo= ~      ',
-        '~==.=oo+o====o=         ~oooo+o+=      ',
-        '~+.+.==o+=+===o+~       +oo++o+++      ',
-        '~=..==.=o===+===+=      ~++++++++~     ',
-        '~.+....==+=++====o=~    ~++++++++~     ',
-        '~..++....~+=+======     ~o+++++++~     ',
-        '~.....++.~+ +==.+===+~  ~++++~+~+~     ',
-        '~.~......~  ~.===.==+=  ~~++~+~+~~     ',
-        '~........~   ~ =.==++=++~~~~~~~~~~     ',
-        '~.....=..~      ==++==+++~~~~~~~~~     ',
-        '~....... ~      ~+=+++++~++~~~~~~~     ',
-        '~.. .....~         ++++++~+~~~~~~~     ',
-        '~........~          +=.++~+~+~~~.      ',
-        ' ~~ . . .~          ~==+++~+~+~ ~      ',
-        '  ~~~ .. ~            .++~+~~ ~        ',
-        '     ~~  ~            ~ =~+ ~          ',
-        '      ~~~~              ~ ~            ',
-      }
-
-      local settings = {
-        -- every line should be same width without escaped \
-        header = {
-          type = 'text',
-          align = 'center',
-          fold_section = false,
-          title = 'Header',
-          margin = 5,
-          content = logo,
-          highlight = 'Statement',
-          default_color = '0x00FF00',
-          oldfiles_amount = 0,
-        },
-        parts = {
-          'header',
-        },
-      }
-      require('startup').setup(settings)
-    end,
+    'tpope/vim-fugitive',
   },
+
+  -- config = function()
+  --   local logo = {
+  --     '       ~                =              ',
+  --     '       ooo ~             oo ~          ',
+  --     '   ~ =oo+o=+~           =oooo          ',
+  --     ' ~~+o+ooo====           =ooooo= ~      ',
+  --     '~==.=oo+o====o=         ~oooo+o+=      ',
+  --     '~+.+.==o+=+===o+~       +oo++o+++      ',
+  --     '~=..==.=o===+===+=      ~++++++++~     ',
+  --     '~.+....==+=++====o=~    ~++++++++~     ',
+  --     '~..++....~+=+======     ~o+++++++~     ',
+  --     '~.....++.~+ +==.+===+~  ~++++~+~+~     ',
+  --     '~.~......~  ~.===.==+=  ~~++~+~+~~     ',
+  --     '~........~   ~ =.==++=++~~~~~~~~~~     ',
+  --     '~.....=..~      ==++==+++~~~~~~~~~     ',
+  --     '~....... ~      ~+=+++++~++~~~~~~~     ',
+  --     '~.. .....~         ++++++~+~~~~~~~     ',
+  --     '~........~          +=.++~+~+~~~.      ',
+  --     ' ~~ . . .~          ~==+++~+~+~ ~      ',
+  --     '  ~~~ .. ~            .++~+~~ ~        ',
+  --     '     ~~  ~            ~ =~+ ~          ',
+  --     '      ~~~~              ~ ~            ',
+  --   }
 }

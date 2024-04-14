@@ -805,6 +805,14 @@ require('lazy').setup({
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
       require('mini.indentscope').setup { symbol = '▎' }
+      require('mini.starter').setup()
+      require('mini.sessions').setup {
+        autoread = true,
+      }
+      require('mini.tabline').setup()
+      require('mini.hipatterns').setup()
+      require('mini.animate').setup()
+      -- require('mini.base16').setup()
     end,
   },
   { -- Highlight, edit, and navigate code
@@ -816,6 +824,7 @@ require('lazy').setup({
       auto_install = true,
       highlight = {
         enable = true,
+        disable = { 'help' },
         -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
         --  If you are experiencing weird indenting issues, add the language to
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.

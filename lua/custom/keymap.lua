@@ -13,6 +13,9 @@ keymap.set('n', '<leader>gp', '<cmd>Gitsigns prev_hunk<cr>', { desc = 'Previous 
 keymap.set('n', '<leader>e', '<cmd>Neotree right toggle<cr>', { desc = 'Neotree toggle' })
 keymap.set('n', '<leader>o', '<cmd>Neotree right reveal toggle<cr>', { desc = 'Neotree reveal' })
 
+-- Create a session with mini.sessions
+keymap.set('n', '<leader>Sw', '<Cmd>lua MiniSessions.write(vim.fn.input("Session Name > "))<CR>')
+
 EnableTransparency = false
 
 vim.keymap.set('n', '<leader>ub', function()
